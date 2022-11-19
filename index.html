@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>senoecoseno</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   
+</head>
+<body>
+    <div class="formWrapper">
+        <form>
+            <h3> AMPIEZZA </h3>  <input type="range" name="ampiezza" value="100" min="20" max="400" step="20">
+            <h3> FREQUENZA </h3> <input type="range" name="frequenza" min="1" max="10" step="0.5">
+            <h3> FASE </h3><input type="range" name="fase" min="0" max="100" step="10">
+        </form>
+    </div>
+    <script type="text/javascript" src="p5/p5.min.js"></script>
+    <script type="text/javascript">
+        let ampiezza = 100
+        let frequenza = 2
+        let fase = 2 
+        let angle = 0 
+        let increment = 0.01
+        
+        function setup() 
+        {
+          createCanvas(400, 400);
+          background(220);
+          line(0,200,400,200)
+          // frameRate(15)
+          
+        }
+        
+        function draw() 
+        {
+          let x = map(angle,0,2*PI,0,400)
+          let y = ampiezza*sin(2*PI*frequenza*angle+fase)
+          let ycos = ampiezza*cos(2*PI*frequenza*angle+fase)
+          
+          stroke(255,0,0)
+          strokeWeight(3)
+          point(x, y+200)
+          stroke(0,255,0)
+          strokeWeight(3)
+          
+          point(x, ycos+200)
+          
+          angle += increment
+          if (x>=400){
+            background(220);ù
+            stroke()
+            line(0,200,400,200)
+            x = 0
+          }
+        }
+        
+        let amplitudeInput = document.querySelector("[name=ampiezza]")
+
+        amplitudeInput.addEventListener("input", function(e){
+        ampiezza = amplitudeInput.value
+        })
+
+        let frequencyInput = document.querySelector("[name=frequenza]")
+        frequencyInput.addEventListener("input", function(e){
+        frequenza = frequencyInput.value
+        })
+
+        let faseInput= document.querySelector("[name-fase]")
+
+        faseInput.addEventListener("input", function(e){
+            fase = faseInput.value
+        })
+
+        </script>
+    
+</body>
+</html>
