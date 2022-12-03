@@ -22,6 +22,13 @@
         let fase = 2 
         let angle = 0 
         let increment = 0.01
+
+        function pulisci() {
+          angle = 0;
+          background(220);
+          stroke(0, 0, 0);
+          line(0, 200, 400, 200);
+        }
         
         function setup() 
         {
@@ -47,29 +54,28 @@
           point(x, ycos+200)
           
           angle += increment
+          
           if (x>=400){
-            background(220);ù
-            stroke()
-            line(0,200,400,200)
-            x = 0
-          }
+            pulisci()      
+         }
+        
         }
         
         let amplitudeInput = document.querySelector("[name=ampiezza]")
 
         amplitudeInput.addEventListener("input", function(e){
-        ampiezza = amplitudeInput.value
+        ampiezza = parseFloat(amplitudeInput.value)
         })
 
         let frequencyInput = document.querySelector("[name=frequenza]")
         frequencyInput.addEventListener("input", function(e){
-        frequenza = frequencyInput.value
+        frequenza = parseFloat(frequencyInput.value)
         })
 
-        let faseInput= document.querySelector("[name-fase]")
-
+        let faseInput= document.querySelector("[name=fase]")
         faseInput.addEventListener("input", function(e){
-            fase = faseInput.value
+          pulisci();
+          fase = parseFloat(faseInput.value)
         })
 
         </script>
